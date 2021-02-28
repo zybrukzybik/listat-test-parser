@@ -17,7 +17,7 @@ async function data(ctx) {
     const results = parser(expr)
 
     await writeResults(results.join('\n'))
-    await responseOk(ctx)
+    await responseOk()
 }
 
 module.exports = data

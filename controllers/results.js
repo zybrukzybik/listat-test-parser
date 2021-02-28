@@ -1,10 +1,7 @@
-const readResults = require('../utils/readResults')
+const {responseOk} = require('../utils/responses')
 
-async function results(ctx) {
-    let fileData = await readResults();
-
-    ctx.statusCode = 200
-    ctx.body = {results: fileData}
+async function results() {
+    await responseOk()
 }
 
 module.exports = results
