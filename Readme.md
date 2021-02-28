@@ -1,3 +1,22 @@
+FAQ:
+
+- clone repository to local storage
+- open terminal, change dir to project's folder and run:
+```
+npm ci
+```
+- to run tests:
+```
+npm test
+```
+- to start server:
+```
+npm start
+```
+
+By default, server start at: http://127.0.0.1:3000.
+You can change it in .env file (rename .env.example)
+
 #TEST TASK
 
 Create a simple REST API service using Node.js (Typescript is preferred). Also you can use any bundler if you want.
