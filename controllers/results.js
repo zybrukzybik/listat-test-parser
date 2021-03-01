@@ -1,7 +1,7 @@
 const {responseOk} = require('../utils/responses')
 
-async function results() {
-    await responseOk()
+async function results(ctx) {
+    await responseOk(ctx)
 }
 
 module.exports = results
