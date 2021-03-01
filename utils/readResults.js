@@ -5,7 +5,7 @@ function readResults() {
         fs.readFile('results.txt', 'utf8', (err, data) => {
             if (err) return reject(err);
 
-            (data) ? data = [data.split('\n')] : data = []
+            (data) ? data = data.split('\n') : data = []
             resolve(data)
         })
     })
