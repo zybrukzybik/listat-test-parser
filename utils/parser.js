@@ -93,7 +93,7 @@ const calcParentheses = (arr) => {
 
 const calcNumbers = (arr) => arr.map(calculator)
 
-const final = (arr) => {
+const parser = (arr) => {
     arr = cleanSpaces(arr)
 
     assertions(arr,
@@ -109,4 +109,4 @@ const final = (arr) => {
     return calcNumbers(arr)
 }
 
-module.exports = final
+module.exports = parser
