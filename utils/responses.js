@@ -1,17 +1,17 @@
 const readResults = require('./readResults')
 
-function responseInvalid(error, context) {
+function responseInvalid(error, ctx) {
     console.log(error)
 
-    context.status = 400
-    context.body = 'invalid'
+    ctx.status = 400
+    ctx.body = 'invalid'
 }
 
-async function responseOk(context) {
+async function responseOk(ctx) {
     const results = await readResults()
 
-    context.status = 200
-    context.body = {ok: results}
+    ctx.status = 200
+    ctx.body = {results: results}
 }
 
 module.exports = {
