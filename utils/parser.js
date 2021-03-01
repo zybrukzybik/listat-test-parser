@@ -21,12 +21,12 @@ const elBehind = (str, operator) => str.match(new RegExp(`(?<=\\d+[${operator}])
 const assertSymbols = (str) => {
     const filtered = str.match(correctSymbolsRe)
 
-    assert(filtered, 'invalid')
-    assert(str === filtered.join(''), 'invalid')
+    assert(filtered, 'invalid symbols')
+    assert(str === filtered.join(''), 'invalid symbols')
 }
 
 const assertCorrectStartSymbol = (str) => {
-    assert(str.match(correctStartSymbolsRe), 'invalid')
+    assert(str.match(correctStartSymbolsRe), 'invalid symbols')
 }
 
 const assertInvalidParentheses = (str) => {
@@ -34,13 +34,13 @@ const assertInvalidParentheses = (str) => {
     const rightPars = str.match(rightParsRe)
 
     if (leftPars && rightPars) {
-        assert(leftPars.length === rightPars.length, 'invalid')
+        assert(leftPars.length === rightPars.length, 'invalid parentheses')
     }
 }
 
-const assertInvalidOp = (str) => assert(!str.match(invalidOpRe), 'invalid')
+const assertInvalidOp = (str) => assert(!str.match(invalidOpRe), 'invalid double operators')
 
-const assertInvalidOrdersOp = (str) => assert(!str.match(invalidOrderOpRe), 'invalid')
+const assertInvalidOrdersOp = (str) => assert(!str.match(invalidOrderOpRe), 'invalid order of operators')
 
 const assertions = (arr, ...assertions) => arr.forEach(str => assertions.forEach(fn => fn(str)))
 
