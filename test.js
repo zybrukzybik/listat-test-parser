@@ -1,7 +1,7 @@
 const assert = require('assert')
 const {describe, it} = require('mocha')
 
-const final = require('./utils/parser')
+const parser = require('./utils/parser')
 
 const validData = [
     "1*100/10+40-25",   //  25
@@ -38,25 +38,25 @@ const twoMoreDiffOp = [
 describe('All', () => {
     describe('Valid symbols', () => {
         it('should calculate', () => {
-            assert.deepStrictEqual(final(validData), validDataExpected)
+            assert.deepStrictEqual(parser(validData), validDataExpected)
         })
     })
 
     describe('Invalid symbols', () => {
         it('should rejects if symbols are not in: "0-9, *, /, +, -, (, )"', () => {
-            return assert.throws(() => final(notValidSymbols), /invalid/)
+            return assert.throws(() => parser(notValidSymbols), /invalid/)
         })
 
         it('should rejects if have wrong count of parentheses', () => {
-            return assert.throws(() => final(wrongParentheses), /invalid/)
+            return assert.throws(() => parser(wrongParentheses), /invalid/)
         })
 
         it('should rejects if have 2+ same operators together', () => {
-            return assert.throws(() => final(twoMoreSameOp), /invalid/)
+            return assert.throws(() => parser(twoMoreSameOp), /invalid/)
         });
 
         it('should rejects if have 2+ different operators together', () => {
-            return assert.throws(() => final(twoMoreDiffOp), /invalid/)
+            return assert.throws(() => parser(twoMoreDiffOp), /invalid/)
         });
     })
 })
