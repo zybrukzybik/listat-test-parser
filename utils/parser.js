@@ -26,7 +26,7 @@ const assertSymbols = (str) => {
 }
 
 const assertCorrectStartSymbol = (str) => {
-    assert(str.match(correctStartSymbolsRe), 'invalid symbols')
+    assert(str.match(correctStartSymbolsRe), 'invalid start symbol')
 }
 
 const assertInvalidParentheses = (str) => {
