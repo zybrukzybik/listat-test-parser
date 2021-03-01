@@ -43,10 +43,10 @@ const assertions = (arr, ...assertions) => arr.forEach(str => assertions.forEach
 const OPERATORS = ['*', '/', '+', '-']
 
 const ops = {
-    '*': mult = (a, b) => Number(a) * Number(b),
-    '/': div = (a, b) => Number(a) / Number(b),
-    '+': sum = (a, b) => Number(a) + Number(b),
-    '-': sub = (a, b) => Number(a) - Number(b)
+    '*': (a, b) => Number(a) * Number(b),
+    '/': (a, b) => Number(a) / Number(b),
+    '+': (a, b) => Number(a) + Number(b),
+    '-': (a, b) => Number(a) - Number(b)
 }
 
 const operation = (a, b, op) => ops[op](a, b)
