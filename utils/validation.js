@@ -10,6 +10,10 @@ function isObj(obj) {
     return ((obj === null) || (Array.isArray(obj)) || typeof obj == 'function') ? false : (typeof obj == 'object')
 }
 
+function isHaveExpressionsArr(obj) {
+    return (Object.keys(obj)[0] === 'expressions')
+}
+
 function isEmptyObj(obj) {
     return (Object.keys(obj).length === 0)
 }
@@ -24,5 +28,6 @@ module.exports = {
     isEmptyArr,
     isObj,
     isEmptyObj,
+    isHaveExpressionsArr,
     isArrWithOneEmptyEl
 }
