@@ -34,6 +34,7 @@ app.use(router.routes())
 app.listen(PORT, HOST, async () => {
     try {
         await createFile('')
+
         console.log('results.txt created')
         console.log(`Server start at http://${HOST}:${PORT}`)
     } catch (err) {
