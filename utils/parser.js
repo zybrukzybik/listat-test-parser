@@ -29,7 +29,7 @@ const assertCorrectStartSymbol = (str) => {
     assert(str.match(correctStartSymbolsRe), 'invalid')
 }
 
-const assertParentheses = (str) => {
+const assertInvalidParentheses = (str) => {
     const leftPars = str.match(leftParsRe);
     const rightPars = str.match(rightParsRe)
 
@@ -40,7 +40,7 @@ const assertParentheses = (str) => {
 
 const assertInvalidOp = (str) => assert(!str.match(invalidOpRe), 'invalid')
 
-const assertOrdersOp = (str) => assert(!str.match(invalidOrderOpRe), 'invalid')
+const assertInvalidOrdersOp = (str) => assert(!str.match(invalidOrderOpRe), 'invalid')
 
 const assertions = (arr, ...assertions) => arr.forEach(str => assertions.forEach(fn => fn(str)))
 
@@ -96,7 +96,13 @@ const calcNumbers = (arr) => arr.map(calculator)
 const final = (arr) => {
     arr = cleanSpaces(arr)
 
-    assertions(arr, assertSymbols, assertCorrectStartSymbol, assertParentheses, assertInvalidOp, assertOrdersOp)
+    assertions(arr,
+        assertSymbols,
+        assertCorrectStartSymbol,
+        assertInvalidParentheses,
+        assertInvalidOp,
+        assertInvalidOrdersOp
+    )
 
     arr = calcParentheses(arr)
 
