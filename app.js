@@ -8,6 +8,7 @@ const createFile = require('./utils/writeResults')
 const {responseInvalid} = require('./utils/responses')
 const resultsRoute = require('./controllers/results')
 const dataRoute = require('./controllers/data')
+const errors = require('./utils/errors')
 
 const PORT = process.env.PORT || '3000'
 const HOST = process.env.HOST || '127.0.0.1'
@@ -22,7 +23,7 @@ app.use(async (ctx, next) => {
     try {
         await next()
     } catch (err) {
-        (err.message === 'invalid') ? responseInvalid(err, ctx) : console.log(err)
+        (errors.includes(err.message)) ? responseInvalid(err, ctx) : console.log(err)
     }
 })
 
