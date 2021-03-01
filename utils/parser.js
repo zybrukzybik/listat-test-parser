@@ -13,8 +13,8 @@ const invalidOrderOpRe = /\+[-*/]|-[+*/]|\*[+-/]|\/[+\-*]|\d\(|\)\d|\(\)/
 
 //  MATCHERS
 const numOpNum = (operator) => new RegExp(`(?<=\\D|)-?\\d+[${operator}]-?\\d+`)
-const elAhead = (string, operator) => string.match(new RegExp(`(?<=\\D|)-?\\d+(?=[${operator}])`))
-const elBehind = (string, operator) => string.match(new RegExp(`(?<=\\d+[${operator}])-?\\d+`))
+const elAhead = (str, operator) => str.match(new RegExp(`(?<=\\D|)-?\\d+(?=[${operator}])`))
+const elBehind = (str, operator) => str.match(new RegExp(`(?<=\\d+[${operator}])-?\\d+`))
 
 //  ASSERTS
 const assertSymbols = (str) => {
