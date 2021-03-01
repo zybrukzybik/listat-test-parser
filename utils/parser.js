@@ -4,10 +4,11 @@ const assert = require('assert')
 const cleanSpaces = (arr) => arr.map(str => str.replace(/ /g, ''))
 
 //  RegEX-s
-const validSymbolsRe = /[+\-*/()]|\b([0-9]|[1-9][0-9]|[1-9][0-9][0-9]|1000)\b/g
+const correctSymbolsRe = /[+\-*/()]|\b([0-9]|[1-9][0-9]|[1-9][0-9][0-9]|1000)\b/g
+const correctStartSymbolsRe = /^-\d|^\(|^\d/
 const leftParsRe = /\(/g
 const rightParsRe = /\)/g
-const parsReg = /\(([0-9+\-*/]+)\)/
+const parsRe = /\(([0-9+\-*/]+)\)/
 const invalidOpRe = /(\*){2,}|(\/){2,}|(\+){2,}|(-){2,}/
 const invalidOrderOpRe = /\+[-*/]|-[+*/]|\*[+-/]|\/[+\-*]|\d\(|\)\d|\(\)/
 
@@ -18,10 +19,14 @@ const elBehind = (str, operator) => str.match(new RegExp(`(?<=\\d+[${operator}])
 
 //  ASSERTS
 const assertSymbols = (str) => {
-    const filtered = str.match(validSymbolsRe)
+    const filtered = str.match(correctSymbolsRe)
 
     assert(filtered, 'invalid')
     assert(str === filtered.join(''), 'invalid')
+}
+
+const assertCorrectStartSymbol = (str) => {
+    assert(str.match(correctStartSymbolsRe), 'invalid')
 }
 
 const assertParentheses = (str) => {
@@ -68,15 +73,15 @@ const calculator = (str) => {
 
     OPERATORS.forEach(operator => str = calc(str, operator))
 
-    return Number(str)
+    return str
 }
 
 const calcParentheses = (arr) => {
     const data = (match, p1) => calculator(p1)
 
     const replacer = (str) => {
-        if (str.match(parsReg)) {
-            str = str.replace(parsReg, data)
+        if (str.match(parsRe)) {
+            str = str.replace(parsRe, data)
             return replacer(str)
         } else {
             return str
@@ -91,7 +96,7 @@ const calcNumbers = (arr) => arr.map(calculator)
 const final = (arr) => {
     arr = cleanSpaces(arr)
 
-    assertions(arr, assertSymbols, assertParentheses, assertInvalidOp, assertOrdersOp)
+    assertions(arr, assertSymbols, assertCorrectStartSymbol, assertParentheses, assertInvalidOp, assertOrdersOp)
 
     arr = calcParentheses(arr)
 
